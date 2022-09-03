@@ -26,7 +26,17 @@ function apagaTudo() {
   }
 }
 
+function removerFinalizados() {
+  const itens = document.querySelectorAll('.completed');
+  for (let i = 0; i < itens.length; i += 1) {
+    itens[i].remove();
+  }
+}
+
 document.getElementById('criar-tarefa').addEventListener('click', criarTarefa);
 listaTarefas.addEventListener('click', alterarCorLi);
 listaTarefas.addEventListener('dblclick', riscarItem);
 document.getElementById('apaga-tudo').addEventListener('click', apagaTudo);
+document
+  .getElementById('remover-finalizados')
+  .addEventListener('click', removerFinalizados);
