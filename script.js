@@ -1,8 +1,8 @@
+const listaTarefas = document.getElementById('lista-tarefas');
+
 function criarTarefa() {
   const texto = document.getElementById('texto-tarefa').value;
-  document
-    .getElementById('lista-tarefas')
-    .appendChild(document.createElement('li')).innerText = texto;
+  listaTarefas.appendChild(document.createElement('li')).innerText = texto;
   document.getElementById('texto-tarefa').value = '';
 }
 
@@ -11,10 +11,14 @@ function alterarCorLi(event) {
     document.querySelector('.selecionado').classList.remove('selecionado');
   }
   const eventTarget = event.target;
-  eventTarget.classList.add('selecionado');
+  eventTarget.classList.toggle('selecionado');
+}
+
+function riscarItem(event) {
+  const eventTarget = event.target;
+  eventTarget.classList.toggle('completed');
 }
 
 document.getElementById('criar-tarefa').addEventListener('click', criarTarefa);
-document
-  .getElementById('lista-tarefas')
-  .addEventListener('click', alterarCorLi);
+listaTarefas.addEventListener('click', alterarCorLi);
+listaTarefas.addEventListener('dblclick', riscarItem);
