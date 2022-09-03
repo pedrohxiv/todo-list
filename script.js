@@ -19,6 +19,14 @@ function riscarItem(event) {
   eventTarget.classList.toggle('completed');
 }
 
+function apagaTudo() {
+  const itens = document.querySelectorAll('li');
+  for (let i = 0; i < itens.length; i += 1) {
+    itens[i].remove();
+  }
+}
+
 document.getElementById('criar-tarefa').addEventListener('click', criarTarefa);
 listaTarefas.addEventListener('click', alterarCorLi);
 listaTarefas.addEventListener('dblclick', riscarItem);
+document.getElementById('apaga-tudo').addEventListener('click', apagaTudo);
