@@ -1,4 +1,5 @@
 const listaTarefas = document.getElementById('lista-tarefas');
+const selecionado = '.selecionado';
 
 function criarTarefa() {
   const texto = document.getElementById('texto-tarefa').value;
@@ -7,7 +8,7 @@ function criarTarefa() {
 }
 
 function alterarCorLi(event) {
-  const itemSelecionado = document.querySelector('.selecionado');
+  const itemSelecionado = document.querySelector(selecionado);
   if (itemSelecionado) {
     itemSelecionado.classList.remove('selecionado');
   }
@@ -58,9 +59,23 @@ function carregarTarefas() {
 }
 
 function removerSelecionado() {
-  const itens = document.querySelectorAll('.selecionado');
+  const itens = document.querySelectorAll(selecionado);
   for (let i = 0; i < itens.length; i += 1) {
     itens[i].remove();
+  }
+}
+
+function moverCima() {
+  const item = document.querySelector(selecionado);
+  if (item && item.previousElementSibling) {
+    listaTarefas.insertBefore(item, item.previousElementSibling);
+  }
+}
+
+function moverBaixo() {
+  const item = document.querySelector(selecionado);
+  if (item && item.nextElementSibling) {
+    listaTarefas.insertBefore(item.nextElementSibling, item);
   }
 }
 
@@ -78,3 +93,5 @@ document
 document
   .getElementById('remover-selecionado')
   .addEventListener('click', removerSelecionado);
+document.getElementById('mover-cima').addEventListener('click', moverCima);
+document.getElementById('mover-baixo').addEventListener('click', moverBaixo);
