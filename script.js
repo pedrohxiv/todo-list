@@ -7,8 +7,9 @@ function criarTarefa() {
 }
 
 function alterarCorLi(event) {
-  if (document.querySelector('.selecionado')) {
-    document.querySelector('.selecionado').classList.remove('selecionado');
+  const itemSelecionado = document.querySelector('.selecionado');
+  if (itemSelecionado) {
+    itemSelecionado.classList.remove('selecionado');
   }
   const eventTarget = event.target;
   eventTarget.classList.toggle('selecionado');
@@ -56,6 +57,13 @@ function carregarTarefas() {
   }
 }
 
+function removerSelecionado() {
+  const itens = document.querySelectorAll('.selecionado');
+  for (let i = 0; i < itens.length; i += 1) {
+    itens[i].remove();
+  }
+}
+
 carregarTarefas();
 document.getElementById('criar-tarefa').addEventListener('click', criarTarefa);
 listaTarefas.addEventListener('click', alterarCorLi);
@@ -67,3 +75,6 @@ document
 document
   .getElementById('salvar-tarefas')
   .addEventListener('click', salvarTarefas);
+document
+  .getElementById('remover-selecionado')
+  .addEventListener('click', removerSelecionado);
